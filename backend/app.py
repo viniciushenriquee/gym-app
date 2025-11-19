@@ -27,7 +27,7 @@ def create_app():
 if __name__ == "__main__":
     app = create_app()
 
-    # Criar tabelas caso não existam
+   
     with app.app_context():
         db.create_all()
 

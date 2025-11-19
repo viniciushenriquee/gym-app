@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const API = "https://automatic-rotary-phone-9rwg5xqprvqc74xq-5000.app.github.dev";
+const API = "http://127.0.0.1:5000";
 
 export default function Exercises() {
   const [exercises, setExercises] = useState([]);

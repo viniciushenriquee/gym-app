@@ -37,7 +37,7 @@ def create_exercise():
 
     db.session.add(ex)
     db.session.commit()
-    return exercise_schema.jsonify(ex), 201
+    return jsonify(exercise_schema.dump(ex)), 201
 
 
 @routes.route("/exercises/<int:ex_id>", methods=["DELETE"])
@@ -60,7 +60,7 @@ def list_workouts():
 @routes.route("/workouts/<int:w_id>", methods=["GET"])
 def get_workout(w_id):
     workout = Workout.query.get_or_404(w_id)
-    return workout_schema.jsonify(workout)
+    return jsonify(workout_schema.dump(workout))
 
 
 @routes.route("/workouts", methods=["POST"])
@@ -92,7 +92,7 @@ def create_workout():
         db.session.add(wi)
 
     db.session.commit()
-    return workout_schema.jsonify(workout), 201
+    return jsonify(workout_schema.dump(workout)), 201
 
 
 # ------------------------------
@@ -113,7 +113,6 @@ def create_session():
     db.session.add(sess)
     db.session.flush()
 
-    # entries (execução dos itens)
     for entry in data.get("entries", []):
         se = SessionEntry(
             session_id=sess.id,
@@ -125,7 +124,7 @@ def create_session():
         db.session.add(se)
 
     db.session.commit()
-    return session_schema.jsonify(sess), 201
+    return jsonify(session_schema.dump(sess)), 201
 
 
 @routes.route("/sessions", methods=["GET"])

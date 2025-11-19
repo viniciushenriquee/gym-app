@@ -1,0 +1,10 @@
+services:
+  - type: web
+    plan: free
+    name: gymapp-backend
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn app:app --preload
+    envVars:
+      - key: FLASK_ENV
+        value: production
